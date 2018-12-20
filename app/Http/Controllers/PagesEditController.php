@@ -15,6 +15,18 @@ class PagesEditController extends Controller
     public function execute(Page $page, Request $request) {
 
 
+
+    	if ($request->isMethod('delete')) {
+    		$page->delete();
+    		return redirect('admin')->with('status', 'Страница удалена');
+    	}
+
+
+
+
+
+
+
     		$input = $request->exсept('_token');
 
     		$Validator = Validator::make($input, [
@@ -46,6 +58,11 @@ class PagesEditController extends Controller
     		}
     	
 
+		
+
+
+
+
 		$old = $page->toArray();
     	if(view()->exists('admin.pages_edit')) {
 
@@ -56,6 +73,18 @@ class PagesEditController extends Controller
 
     		return view('admin.pages_edit', $data);
     	}
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }
